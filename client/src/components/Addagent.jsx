@@ -7,7 +7,7 @@ function AddAgent({ getAgents }) {
     email: "",
     mobile: "",
     password: "",
-    confirmPassword: "", 
+    confirmPassword: "", // ✅ Added confirmPassword field
   });
   const [isLoading, setIsLoading] = useState(false);
 
@@ -52,7 +52,7 @@ function AddAgent({ getAgents }) {
       return;
     }
 
-    // checks if password matches 
+    // ✅ Check if passwords match
     if (formData.password !== formData.confirmPassword) {
       toast.error("Passwords do not match");
       return;
@@ -68,7 +68,7 @@ function AddAgent({ getAgents }) {
         return;
       }
 
-   
+      // ✅ Send all 5 fields including confirmPassword
       const payload = {
         name: formData.name.trim(),
         email: formData.email.trim().toLowerCase(),
@@ -79,7 +79,7 @@ function AddAgent({ getAgents }) {
 
       console.log("Sending payload:", payload); // Debug log
 
-      const response = await fetch("https://agent-management-server.vercel.app/api/agents/add", {
+      const response = await fetch("http://localhost:5000/api/agents/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -137,7 +137,7 @@ function AddAgent({ getAgents }) {
             required
           />
 
-
+          {/* Email Field */}
           <input
             type="email"
             name="email"
@@ -148,7 +148,7 @@ function AddAgent({ getAgents }) {
             required
           />
 
-
+          {/* Mobile Field */}
           <input
             type="tel"
             name="mobile"
@@ -159,7 +159,7 @@ function AddAgent({ getAgents }) {
             required
           />
 
-       
+          {/* Password Field */}
           <input
             type="password"
             name="password"
@@ -170,7 +170,7 @@ function AddAgent({ getAgents }) {
             required
           />
 
-      
+          {/* ✅ Confirm Password Field - Added */}
           <input
             type="password"
             name="confirmPassword"

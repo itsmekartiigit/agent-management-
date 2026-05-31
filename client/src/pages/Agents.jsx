@@ -83,7 +83,7 @@ function Agents() {
       }
 
       const response = await fetch(
-        "https://agent-management-server.vercel.app/api/agents/list",
+        "http://localhost:5000/api/agents/list",
         {
           headers: {
             token: token,
@@ -159,7 +159,7 @@ function Agents() {
       console.log("Sending payload:", payload);
 
       const response = await fetch(
-        "https://agent-management-server.vercel.app/api/agents/add",
+        "http://localhost:5000/api/agents/add",
         {
           method: "POST",
           headers: {
@@ -198,6 +198,7 @@ function Agents() {
   useEffect(() => {
     getAgents();
   }, []);
+
 
   const displayMobileNumber = (mobile) => {
     // If mobile is 10 digits, display as +91XXXXXXXXXX

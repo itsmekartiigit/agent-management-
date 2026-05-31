@@ -6,7 +6,7 @@ function Tasks() {
 
   const getTasks = async () => {
     const response = await fetch(
-      "https://agent-management-server.vercel.app/api/tasks/list",
+      "http://localhost:5000/api/tasks/list",
       {
         headers: {
           token:
