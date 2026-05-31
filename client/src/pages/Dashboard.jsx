@@ -6,7 +6,7 @@ const Dashboard = () => {
   //fetchiing tasks from backend showing as lists 
   const fetchTasks = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/tasks/list", {
+      const response = await fetch("https://agent-management-server.vercel.app/api/tasks/list", {
         headers: {
           token: localStorage.getItem("token"),
         },

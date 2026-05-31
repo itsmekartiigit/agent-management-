@@ -18,7 +18,7 @@ function Upload() {
 
     const response =
       await fetch(
-        "http://localhost:5000/api/upload/file",
+        "https://agent-management-server.vercel.app/api/upload/file",
         {
           method: "POST",
           headers: {

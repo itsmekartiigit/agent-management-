@@ -20,29 +20,26 @@ function Agents() {
     });
   };
 
-  // ✅ Validate mobile number with +91 country code
+ 
   const isValidMobile = (mobile) => {
-    // Format: +91XXXXXXXXXX (total 13 characters: +91 + 10 digits)
     const mobileRegex = /^\+91[0-9]{10}$/;
     return mobileRegex.test(mobile);
   };
 
-  // ✅ Format mobile number (add +91 if missing)
+ 
   const formatMobileNumber = (mobile) => {
     // Remove all spaces and special characters
     let cleaned = mobile.replace(/\s/g, '');
     
-    // If already has +91, return as is
+
     if (cleaned.startsWith('+91')) {
       return cleaned;
     }
-    
-    // If starts with 91 (without +), add +
+  
     if (cleaned.startsWith('91')) {
       return '+' + cleaned;
     }
     
-    // If 10 digits, add +91
     if (/^[0-9]{10}$/.test(cleaned)) {
       return '+91' + cleaned;
     }
@@ -51,22 +48,19 @@ function Agents() {
     return cleaned;
   };
 
-  // ✅ Extract 10 digits for database storage
+
   const getTenDigitNumber = (mobile) => {
     // Extract only digits
     const digits = mobile.replace(/\D/g, '');
     
-    // If starts with 91 and has 12 digits, take last 10
     if (digits.length === 12 && digits.startsWith('91')) {
       return digits.slice(2);
     }
     
-    // If has +91 and 13 characters, take last 10
     if (mobile.startsWith('+91') && digits.length === 12) {
       return digits.slice(2);
     }
     
-    // If already 10 digits, return as is
     if (digits.length === 10) {
       return digits;
     }
@@ -74,7 +68,6 @@ function Agents() {
     return digits;
   };
 
-  // Validate email format
   const isValidEmail = (email) => {
     return email && email.includes("@") && email.includes(".");
   };
@@ -90,7 +83,7 @@ function Agents() {
       }
 
       const response = await fetch(
-        "http://localhost:5000/api/agents/list",
+        "https://agent-management-server.vercel.app/api/agents/list",
         {
           headers: {
             token: token,
@@ -125,7 +118,6 @@ function Agents() {
       return;
     }
 
-    // ✅ Validate mobile with +91 country code
     if (!isValidMobile(formData.mobile)) {
       toast.error("Mobile number must be in +91XXXXXXXXXX format (e.g., +919876543210)");
       return;
@@ -152,7 +144,6 @@ function Agents() {
         return;
       }
 
-      // ✅ Format mobile and extract 10 digits for database
       const formattedMobile = formatMobileNumber(formData.mobile);
       const tenDigitMobile = getTenDigitNumber(formData.mobile);
 
@@ -168,7 +159,7 @@ function Agents() {
       console.log("Sending payload:", payload);
 
       const response = await fetch(
-        "http://localhost:5000/api/agents/add",
+        "https://agent-management-server.vercel.app/api/agents/add",
         {
           method: "POST",
           headers: {
@@ -184,7 +175,6 @@ function Agents() {
       if (data.success) {
         toast.success("Agent Added Successfully");
 
-        // Reset form
         setFormData({
           name: "",
           email: "",
@@ -193,7 +183,6 @@ function Agents() {
           confirmPassword: "",
         });
 
-        // Refresh agent list
         getAgents();
       } else {
         toast.error(data.message);
@@ -210,7 +199,6 @@ function Agents() {
     getAgents();
   }, []);
 
-  // ✅ Helper function to display formatted mobile number
   const displayMobileNumber = (mobile) => {
     // If mobile is 10 digits, display as +91XXXXXXXXXX
     if (/^[0-9]{10}$/.test(mobile)) {
