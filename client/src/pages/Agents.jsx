@@ -83,7 +83,7 @@ function Agents() {
       }
 
       const response = await fetch(
-        "https://agent-management-server.vercel.app//api/agents/list",
+        "https://agent-management-server.vercel.app/api/agents/list",
         {
           headers: {
             token: token,

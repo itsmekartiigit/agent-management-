@@ -79,7 +79,7 @@ function AddAgent({ getAgents }) {
 
       console.log("Sending payload:", payload); // Debug log
 
-      const response = await fetch("http://localhost:5000/api/agents/add", {
+      const response = await fetch("https://agent-management-server.vercel.app/api/agents/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
