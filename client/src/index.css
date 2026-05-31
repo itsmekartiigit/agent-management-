@@ -1,0 +1,34 @@
+/**
+ * Global Styles
+ * Imports Google Fonts and Tailwind CSS
+ */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+/* Import Tailwind CSS framework */
+@import "tailwindcss";
+
+/* Apply global font to all elements */
+*,
+body {
+    font-family: "Outfit", sans-serif;
+}
+
+/* Optional: Better box-sizing for all elements */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Optional: Remove default margin and padding */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Optional: Smooth scrolling for better UX */
+html {
+    scroll-behavior: smooth;
+}
